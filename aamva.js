@@ -26,9 +26,9 @@ export function parseAAMVALicenseData(data) {
     }
 
     // extract fields using regular expressions
-    const dateOfBirthMatch = data.match(/DBB([^\n|]*)[\n|]/);
-    const lastNameMatch = data.match(/DCS([^\n|]*)[\n|]/);
-    const firstNameMatch = data.match(/DAC([^\n|]*)[\n|]/);
+    const dateOfBirthMatch = data.match(/DBB([^\n]*)\n/);
+    const lastNameMatch = data.match(/DCS([^\n]*)\n/);
+    const firstNameMatch = data.match(/DAC([^\n]*)\n/);
     if (!lastNameMatch || !dateOfBirthMatch || !firstNameMatch) {
         return null;
     }
