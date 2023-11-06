@@ -1,0 +1,36 @@
+<html lang="en">
+<head>
+    <title>PDF417 Age Check</title>
+    <link rel="stylesheet" type="text/css" href="styles.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+</head>
+<body>
+
+<div class="container">
+</div>
+
+
+<dialog id="success" class="success-popup">
+    <h1 class="popup-name"></h1>
+    <h2 class="popup-age"></h2>
+    <form method="dialog">
+        <button autofocus class="popup-button">OK</button>
+    </form>
+</dialog>
+
+<dialog id="reject" class="reject-popup">
+    <h1 class="popup-name"></h1>
+    <h2 class="popup-age"></h2>
+    <form method="dialog">
+        <button autofocus class="popup-button">OK</button>
+    </form>
+</dialog>
+
+<!-- AAMVA.js library for parsing PDF417 barcode data -->
+<script src="https://cdn.jsdelivr.net/npm/aamva@2.0.0"></script>
+
+<!-- our app code -->
+<script type="module" src="index.js"></script>
+
+</body>
+</html>

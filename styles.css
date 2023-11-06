@@ -1,0 +1,25 @@
+body, html {
+    width: 100%;
+    font-family: sans-serif;
+    margin: 0;
+}
+
+.container {
+    height: 100vh;
+    position: relative;
+    background-color: black;
+}
+
+.success-popup {
+    background-color: limegreen;
+}
+
+.reject-popup {
+    background-color: red;
+    color: #eeeeee;
+}
+
+.popup-button {
+    padding: 16px;
+    width: 100%;
+}
