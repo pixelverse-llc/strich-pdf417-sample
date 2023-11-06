@@ -1,22 +1,24 @@
 // import STRICH SDK as an ES6 module directly from a CDN
 import {StrichSDK, BarcodeReader} from 'https://cdn.jsdelivr.net/npm/@pixelverse/strichjs-sdk@1.3.2/dist/strich.js';
 
+// AAMVA helper routines
+import {parseAAMVALicenseData} from "./aamva.js";
+
 function addResult(codeDetection) {
-    const parsed = parse(codeDetection.data); // requires previous import of aamva
+
+    console.log('Scanned PDF417 barcode:', codeDetection.data);
+    const parsed = parseAAMVALicenseData(codeDetection.data);
     if (!parsed) {
         console.error(`Read something that could not be parsed as AAMVA format`);
         return;
     }
 
-    // aamva.js reports date as 'YYYYMMDD', convert it to 'YYYY-MM-DD' so it can be parsed as a Date
-    const yyyymmdd = parsed.birthday; // YYYYMMDD
-    const jsDateStr = yyyymmdd.slice(0, 4) + '-' + yyyymmdd.slice(4, 6) + '-' + yyyymmdd.slice(6, 8);
-    const date = new Date(jsDateStr);
-    const age = new Date().getFullYear() - date.getFullYear();
+    // calculate age from system time
+    const age = new Date().getFullYear() - parsed.dateOfBirth.getFullYear();
 
     // depending on age, show success or reject popup
     const dialog = document.getElementById(age < 21 ? 'reject' : 'success');
-    dialog.getElementsByClassName('popup-name')[0].innerText = parsed.name.first + ' ' + parsed.name.last;
+    dialog.getElementsByClassName('popup-name')[0].innerText = parsed.firstName + ' ' + parsed.lastName;
     dialog.getElementsByClassName('popup-age')[0].innerText = age + ' yrs old';
     dialog.showModal();
 }
