@@ -4,12 +4,12 @@ import {StrichSDK, BarcodeReader} from 'https://cdn.jsdelivr.net/npm/@pixelverse
 // AAMVA helper routines
 import {parseAAMVALicenseData} from "./aamva.js";
 
-function addResult(codeDetection) {
+function processPDF417Barcode(codeDetection) {
 
-    console.log('Scanned PDF417 barcode:', codeDetection.data);
+    // attempt to parse barcode data as AAMVA driver's license
     const parsed = parseAAMVALicenseData(codeDetection.data);
     if (!parsed) {
-        console.error(`Read something that could not be parsed as AAMVA format`);
+        console.error('PDF417 data could not be parsed according to AAMVA spec');
         return;
     }
 
@@ -47,7 +47,7 @@ function initializeBarcodeReader() {
             // store the BarcodeReader in a global, to be able to access it later (e.g. to destroy it)
             window['barcodeReader'] = barcodeReader;
             barcodeReader.detected = (detections) => {
-                addResult(detections[0]);
+                processPDF417Barcode(detections[0]);
             };
             barcodeReader.start().then(() => {
                 console.log('BarcodeReader.start() succeeded');

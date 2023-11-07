@@ -11,10 +11,13 @@ body, html {
 }
 
 .success-popup {
+    width: 80%;
     background-color: limegreen;
+    color: black;
 }
 
 .reject-popup {
+    width: 80%;
     background-color: red;
     color: #eeeeee;
 }
