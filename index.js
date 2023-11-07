@@ -49,14 +49,11 @@ function initializeBarcodeReader() {
             barcodeReader.detected = (detections) => {
                 processPDF417Barcode(detections[0]);
             };
-            barcodeReader.start().then(() => {
-                console.log('BarcodeReader.start() succeeded');
-            }).catch(err => {
-                console.error('BarcodeReader.start() failed', err);
-            });
+            return barcodeReader.start();
         })
         .catch(error => {
-            console.error('Initialization error', error);
+            // See: https://docs.strich.io/reference/classes/SdkError.html
+            window.alert(error.localizedMessage);
         });
 }
 
