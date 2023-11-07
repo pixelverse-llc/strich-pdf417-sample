@@ -17,7 +17,7 @@ function processPDF417Barcode(codeDetection) {
     const age = new Date().getFullYear() - parsed.dateOfBirth.getFullYear();
 
     // depending on age, show success or reject popup
-    const dialog = document.getElementById(age < 21 ? 'reject' : 'success');
+    const dialog = document.getElementById(age < 21 ? 'failure' : 'success');
     dialog.getElementsByClassName('popup-name')[0].innerText = parsed.firstName + ' ' + parsed.lastName;
     dialog.getElementsByClassName('popup-age')[0].innerText = age + ' yrs old';
     dialog.showModal();

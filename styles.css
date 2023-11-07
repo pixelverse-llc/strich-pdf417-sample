@@ -16,7 +16,7 @@ body, html {
     color: black;
 }
 
-.reject-popup {
+.failure-popup {
     width: 80%;
     background-color: red;
     color: #eeeeee;
