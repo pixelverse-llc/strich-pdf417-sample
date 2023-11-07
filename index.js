@@ -41,7 +41,7 @@ function initializeBarcodeReader() {
             resolution: 'full-hd'
         },
     };
-    new BarcodeReader(configuration).initialize()
+    return new BarcodeReader(configuration).initialize()
         .then(barcodeReader => {
 
             // store the BarcodeReader in a global, to be able to access it later (e.g. to destroy it)
@@ -50,10 +50,6 @@ function initializeBarcodeReader() {
                 processPDF417Barcode(detections[0]);
             };
             return barcodeReader.start();
-        })
-        .catch(error => {
-            // See: https://docs.strich.io/reference/classes/SdkError.html
-            window.alert(error.localizedMessage);
         });
 }
 
@@ -62,8 +58,9 @@ const licenseKey = '<your-license-key-here>';
 StrichSDK.initialize(licenseKey)
     .then(() => {
         console.log('SDK initialized successfully');
-        initializeBarcodeReader();
+        return initializeBarcodeReader();
     })
     .catch(err => {
-        window.alert('SDK failed to initialize: ' + err);
+        // See: https://docs.strich.io/reference/classes/SdkError.html
+        window.alert(err.localizedMessage);
     });
