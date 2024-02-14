@@ -1,5 +1,5 @@
 // import STRICH SDK as an ES6 module directly from a CDN
-import {StrichSDK, BarcodeReader} from 'https://cdn.jsdelivr.net/npm/@pixelverse/strichjs-sdk@1.3.2/dist/strich.js';
+import {StrichSDK, BarcodeReader} from 'https://cdn.jsdelivr.net/npm/@pixelverse/strichjs-sdk@1.4.3';
 
 // AAMVA helper routines
 import {parseAAMVALicenseData} from "./aamva.js";
